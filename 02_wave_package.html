@@ -284,11 +284,12 @@ commentsRunWhenDOMLoaded(addUtterances);
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="propagation-of-a-light-pulse-in-a-dispersive-medium">
 <h1>Propagation of a light pulse in a dispersive medium<a class="headerlink" href="#propagation-of-a-light-pulse-in-a-dispersive-medium" title="Permalink to this headline">¶</a></h1>
-<p>In this exercise we will solve the time evolution of a light pulse. We will describe its initial shape by function <span class="math notranslate nohighlight">\(A(z,t = 0)\)</span>, which is assumed to be Gaussian for simplicity:
-$<span class="math notranslate nohighlight">\(
+<p>In this exercise we will solve the time evolution of a light pulse. We will describe its initial shape by function <span class="math notranslate nohighlight">\(A(z,t = 0)\)</span>, which is assumed to be Gaussian for simplicity:</p>
+<div class="math notranslate nohighlight">
+\[
 A(z, t=0) = e^{-z^2/2\sigma^2} e^{ik_0z}
-\)</span>$
-In plots etc, we will always only work with the real part of the wave package.</p>
+\]</div>
+<p>In plots etc, we will always only work with the real part of the wave package.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -322,44 +323,57 @@ In plots etc, we will always only work with the real part of the wave package.</
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10ef2d9a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x111d73ac0&gt;
 </pre></div>
 </div>
 <img alt="_images/02_wave_package_3_1.png" src="_images/02_wave_package_3_1.png" />
 </div>
 </div>
-<p>We would now like to understand, how this wave-package propagates. In a non-linear medium the propagation is not easily solved, but we have to know the dispersion relationship of the medium. In our case, we will use the relationship:
-$<span class="math notranslate nohighlight">\(
+<p>We would now like to understand, how this wave-package propagates. In a non-linear medium the propagation is not easily solved, but we have to know the dispersion relationship of the medium. In our case, we will use the relationship:</p>
+<div class="math notranslate nohighlight">
+\[
 \omega(k) = k_0 v_p + (k-k_0)v_g + \frac{\Gamma}{2}(k-k_0)^2
-\)</span>$</p>
-<p>For each single wavelength <span class="math notranslate nohighlight">\(k\)</span>, we then know the time evolution of the wave package to be:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>For each single wavelength <span class="math notranslate nohighlight">\(k\)</span>, we then know the time evolution of the wave package to be:</p>
+<div class="math notranslate nohighlight">
+\[
 a(k,t) = a(k, t=0) e^{-i\omega(k)t}
-\)</span>$</p>
-<p>And the full time evolution is then obtain through the Fourier transform
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>And the full time evolution is then obtain through the Fourier transform</p>
+<div class="math notranslate nohighlight">
+\[
 A(z, t) = \int dk e^{ikz} a(k,t)
-\)</span>$</p>
+\]</div>
 <div class="section" id="the-intial-wavepackage-in-fourier-space">
 <h2>The intial wavepackage in Fourier space<a class="headerlink" href="#the-intial-wavepackage-in-fourier-space" title="Permalink to this headline">¶</a></h2>
-<p>As we know <span class="math notranslate nohighlight">\(A(z,t=0)\)</span>, we can now also directly calculate:
+<p>As we know <span class="math notranslate nohighlight">\(A(z,t=0)\)</span>, we can now also directly calculate:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align}
-a(k) &amp;= \frac{1}{2\pi} \int dz e^{-ikz}A(z)\
-&amp;= \frac{1}{2\pi} \int dz e^{-i(k-k_0)z}e^{-z^2/2\sigma^2}\
-\end{align}</p>
-<p>This is a Gaussian integral of the type <span class="math notranslate nohighlight">\(\int dz e^{-z^2} = \sqrt{\pi}\)</span>. We will rewrite:
-$<span class="math notranslate nohighlight">\(
+a(k) &amp;= \frac{1}{2\pi} \int dz e^{-ikz}A(z)\\
+ &amp;= \frac{1}{2\pi} \int dz e^{-i(k-k_0)z}e^{-z^2/2\sigma^2}\\
+\end{align}
+\end{split}\]</div>
+<p>This is a Gaussian integral of the type <span class="math notranslate nohighlight">\(\int dz e^{-z^2} = \sqrt{\pi}\)</span>. We will rewrite:</p>
+<div class="math notranslate nohighlight">
+\[
 i(k-k_0)z+z^2/2\sigma^2 = \frac{\left[z+i(k-k_0)\sigma^2\right]^2}{2\sigma^2}+\frac{(k-k_0)^2\sigma^2}{2}
-\)</span><span class="math notranslate nohighlight">\(
-We can now shift the limits of the integral to obtain:
+\]</div>
+<p>We can now shift the limits of the integral to obtain:</p>
+<div class="math notranslate nohighlight">
+\[
 \begin{align}
 a(k) &amp;= \frac{1}{2\pi} e^{-\frac{(k-k_0)^2\sigma^2}{2}}\int dz e^{-\frac{z^2}{2\sigma^2}}
 \end{align}
-Changing the variable of integration to \)</span>z’ = \frac{z}{\sqrt{2}\sigma}$, we end up with the integral:
+\]</div>
+<p>Changing the variable of integration to <span class="math notranslate nohighlight">\(z' = \frac{z}{\sqrt{2}\sigma}\)</span>, we end up with the integral:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align}
-a(k) &amp;= \frac{\sqrt{2}\sigma}{2\pi} e^{-\frac{(k-k_0)^2\sigma^2}{2}}\int dz’ e^{-z’^2}\
+a(k) &amp;= \frac{\sqrt{2}\sigma}{2\pi} e^{-\frac{(k-k_0)^2\sigma^2}{2}}\int dz' e^{-z'^2}\\
 &amp;= \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{(k-k_0)^2\sigma^2}{2}}
-\end{align}</p>
+\end{align}
+\end{split}\]</div>
 <p>It is Gaussian centered around <span class="math notranslate nohighlight">\(k_c\)</span> and of width <span class="math notranslate nohighlight">\(\sigma_k = \frac{1}{\sigma}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -381,14 +395,16 @@ a(k) &amp;= \frac{\sqrt{2}\sigma}{2\pi} e^{-\frac{(k-k_0)^2\sigma^2}{2}}\int dz�
 </div>
 <div class="section" id="time-evolution-in-k-space">
 <h2>Time evolution in k space<a class="headerlink" href="#time-evolution-in-k-space" title="Permalink to this headline">¶</a></h2>
-<p>We are now ready to simply calculate the time evolution of the wave package in k space. It is given by:
-$<span class="math notranslate nohighlight">\(
+<p>We are now ready to simply calculate the time evolution of the wave package in k space. It is given by:</p>
+<div class="math notranslate nohighlight">
+\[
 a(k,t) = \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{\sigma^2}{2}(k-k_0)^2} e^{-i\left[k_0 v_p + (k-k_0)v_g + \frac{\Gamma}{2}(k-k_0)^2\right]t}
-\)</span><span class="math notranslate nohighlight">\(
-Quite importantly it remains a Gaussian in \)</span>k<span class="math notranslate nohighlight">\(, but only we complex numbers. Ordering in polynoms of k, we have:
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>Quite importantly it remains a Gaussian in <span class="math notranslate nohighlight">\(k\)</span>, but only we complex numbers. Ordering in polynoms of k, we have:</p>
+<div class="math notranslate nohighlight">
+\[
 a(k,t) = \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{\sigma^2-i\Gamma t}{2}(k-k_0)^2} e^{-i\left[k_0 v_p + (k-k_0)v_g\right]t}
-\)</span>$</p>
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters of the dispersion relation. You can set them freely</span>
@@ -418,7 +434,7 @@ a(k,t) = \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{\sigma^2-i\Gamma t}{2}(k-k_0)^2} e
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x10f078670&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x111ec6d00&gt;
 </pre></div>
 </div>
 <img alt="_images/02_wave_package_8_1.png" src="_images/02_wave_package_8_1.png" />
@@ -444,14 +460,16 @@ A(z, t) = \int dk e^{ikz} a(k,t)
 \[
 A(z, t) \propto e^{-\frac{(z-v_gt)^2}{2\left(\sigma^2 -i\Gamma t\right)}}
 \]</div>
-<p>To make it simpler to understand we rewrite:
-$<span class="math notranslate nohighlight">\(
+<p>To make it simpler to understand we rewrite:</p>
+<div class="math notranslate nohighlight">
+\[
  \frac{1}{\sigma^2-i\Gamma t} = \frac{\sigma^2+i\Gamma t}{\sigma^4+\Gamma^2 t^2}
- \)</span><span class="math notranslate nohighlight">\(
- The wave function has then the following form:
- \)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>The wave function has then the following form:</p>
+<div class="math notranslate nohighlight">
+\[
 A(z, t) \propto e^{-\frac{(z-v_gt)^2}{2\left(\sigma^4+\Gamma^2 t^2\right)}\left(\sigma^2+i\Gamma t\right)}
-\)</span>$</p>
+\]</div>
 <p>This is a Gaussian that is centered at <span class="math notranslate nohighlight">\(z = v_gt\)</span> with envelope:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -476,7 +494,7 @@ A(z, t) \propto e^{-\frac{(z-v_gt)^2}{2\left(\sigma^4+\Gamma^2 t^2\right)}\left(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x10f284b20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1120d5dc0&gt;
 </pre></div>
 </div>
 <img alt="_images/02_wave_package_11_1.png" src="_images/02_wave_package_11_1.png" />
