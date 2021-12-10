@@ -295,7 +295,7 @@ commentsRunWhenDOMLoaded(addUtterances);
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="numerical-tests-in-python">
 <h1>Numerical tests in python<a class="headerlink" href="#numerical-tests-in-python" title="Permalink to this headline">¶</a></h1>
-<p>In this notebook we discuss a bit the basics of numerical methods and plotting in python. <a class="reference external" href="https://www.python.org/">python</a> as the standard language. A nice tutorial is this a <a class="reference external" href="https://python.swaroopch.com/">A byte of Python</a>.  Importantly, we will not reinvent the wheel, but use some standard libraries for scientific programming. They will be:</p>
+<p>In this notebook we discuss a bit the basics of numerical methods and plotting in python. Importantly, we will not reinvent the wheel, but use some standard libraries for scientific programming. They will be:</p>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://jupyter.org/">jupyter notebook</a>, for simple interactive coding.</p></li>
 <li><p><a class="reference external" href="https://numpy.org/">Numpy</a> for all kinds of numerical methods.</p></li>
@@ -304,10 +304,11 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="quantum-harmonical-oscillator">
 <h1>Quantum harmonical oscillator<a class="headerlink" href="#quantum-harmonical-oscillator" title="Permalink to this headline">¶</a></h1>
-<p>We will work our way through quantum harmonic oscillator for which the potential is:
-$<span class="math notranslate nohighlight">\(
+<p>We will work our way through quantum harmonic oscillator for which the potential is:</p>
+<div class="math notranslate nohighlight">
+\[
 V(x) = \frac{m\omega^2}{2}x^2
-\)</span>$</p>
+\]</div>
 <p>We would now like to plot it up. For that we will need to import some routines, which simplify this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -349,10 +350,11 @@ V(x) = \frac{m\omega^2}{2}x^2
 <p>While the potential is nice to look at, we would actually like to use python to do some more powerful stuff than simple plots. One of them is the numerical diagonialization of the problem.</p>
 <div class="section" id="kinetic-energy">
 <h2>Kinetic energy<a class="headerlink" href="#kinetic-energy" title="Permalink to this headline">¶</a></h2>
-<p>So we first have to build the matrix that represents the kinetic energy. For that to work we discretize the second order derivative as:
-$<span class="math notranslate nohighlight">\(
+<p>So we first have to build the matrix that represents the kinetic energy. For that to work we discretize the second order derivative as:</p>
+<div class="math notranslate nohighlight">
+\[
 f''(x) = \frac{f(x-dx)+f(x+dx)-2f(x)}{dx^2}
-\)</span>$</p>
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#resolution of the grid</span>
